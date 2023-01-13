@@ -1,5 +1,16 @@
-<<<<<<< HEAD
+# Livox_simulation_customMsg
+Livox simulation for Ubuntu18 and Gazebo 9, and can export 3 Ros messages: PointCloud, PointCloud2 and CustomMsg, they can be used in A-LOAM, Fast-LIO and so on.
+
+### Refer to https://github.com/lvfengchi/livox_laser_simulation
+
+# Some tips
+
+You can change the msg by change the pointcloudType in `src/livox_points_plugin.cpp` line 101
+
+You are also allowed to change the type of lidar in `src/livox_points_plugin.cpp` line 54. If you want to use `.xacro` model file, just skip this step, while using `.sdf`, please config the path of csv file.
+
 # Livox Laser Simulation
+
 A package to provide plug-in for [Livox Series LiDAR](https://www.livoxtech.com).
 
 ## Requirements
@@ -55,7 +66,3 @@ We can choose the lidar model by selecting different CSV file in scan_mode dir f
 - samples: 24000  // number of points in each scan loop
 - downsample: 1 // we can increment this para to decrease the consumption
 
-### Thanks to LvFengchi and CaoMing(https://github.com/EpsAvlc) for the help of this repository！
-=======
-# Livox_simulation_customMsg
-Livox simulation for Ubuntu18 and Gazebo 9, and can export 3 Ros messages: PointCloud, PointCloud2 and CustomMsg, they can be used in A-LOAM, Fast-LIO and so on.
