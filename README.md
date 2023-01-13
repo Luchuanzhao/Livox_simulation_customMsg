@@ -59,4 +59,3 @@ We can choose the lidar model by selecting different CSV file in scan_mode dir f
 =======
 # Livox_simulation_customMsg
 Livox simulation for Ubuntu18 and Gazebo 9, and can export 3 Ros messages: PointCloud, PointCloud2 and CustomMsg, they can be used in A-LOAM, Fast-LIO and so on.
->>>>>>> 8f3f7745825bd3e270dbdce1e48996d873badb53
