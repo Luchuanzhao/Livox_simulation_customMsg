@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="livox_avia">
+  <link name="livox_base">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.00 0 0.00"/>
+      <geometry>
+        <mesh filename="package://livox_laser_simulation/meshes/livox_mid40.dae">
+          </mesh>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://livox_laser_simulation/meshes/livox_mid40.dae">
+          </mesh>
+      </geometry>
+    </collision>
+  </link>
+  <link name="livox">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+  <!--<link name="world"/>-->
+  <joint name="livox_to_livox_base_joint" type="fixed">
+    <!--<parent link="${name}_base"/>
+      <child link="${name}"/>-->
+    <parent link="livox_base"/>
+    <child link="livox"/>
+    <origin rpy="0 0 1.57" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <gazebo reference="livox">
+    <sensor name="laser_livox" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>True</visualize>
+      <update_rate>10</update_rate>
+      <!-- This ray plgin is only for visualization. -->
+      <plugin filename="liblivox_laser_simulation.so" name="gazebo_ros_laser_controller">
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>100</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.614355377778</min_angle>
+              <max_angle>0.614355377778</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>50</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.673696522222</min_angle>
+              <max_angle>0.673696522222</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.1</min>
+            <max>200.0</max>
+            <resolution>0.002</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <visualize>True</visualize>
+        <samples>24000</samples>
+        <downsample>1</downsample>
+        <csv_file_name>package://livox_laser_simulation/scan_mode/avia.csv</csv_file_name>
+        <ros_topic>scan</ros_topic>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!--<xacro:include filename="$(find livox_laser_simulation)/urdf/standardrobots_oasis300.xacro"/>
+  <xacro:link_oasis name="oasis"/>-->
+</robot>
+
